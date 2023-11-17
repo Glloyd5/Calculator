@@ -1,6 +1,8 @@
 html {
   background-image: url(./images/leone-venter-VieM9BdZKFo-unsplash.jpg);
   background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
 }
 
 .body {
@@ -24,6 +26,19 @@ html {
   width: 80%;
   text-align: end;
   background-color: rgb(185, 192, 230);
+  height: 50%;
+}
+
+#result {
+  margin: 2px;
+  margin-right: 20px;
+  font-size: 42px;
+}
+
+#expression {
+  margin: 4px;
+  margin-right: 20px;
+  font-size: 24px;
 }
 
 #calcContainer {
@@ -74,13 +89,15 @@ html {
 
 #equals {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 40px;
+  
 }
 
-#evaluate {
-  max-width: 80%;
+#evaluate, 
+#clear {
+  max-width: 40%;
   height: 100px;
   background-color: rgb(10, 151, 194);
   font-size: 48px;
