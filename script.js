@@ -4,44 +4,52 @@ let secondNum;
 let result;
 let outputResult = document.querySelector('#result');
 let outputExpression = document.querySelector('#expression');
-let digitButtons = document.querySelectorAll('.digitB');
-let operatorButtons = document.querySelectorAll('.operatorB');
+let digitButtons = document.querySelectorAll('#digits');
+let operatorButtons = document.querySelectorAll('#operators');
+let displayValue = ""
 
-digitButtons.addEventListener('click',)
-operatorButtons.addEventListener('click',)
-
-const updateExpression = function(){
-    outputExpression.textContent = `${firstNum} ${operator} ${secondNum}`;
+const updateDisplay = function(e){
+  if (e.value != '+' && e.value != '*' && e.value != '/' && e.value != '-'){
+    displayValue += e.value
+    outputExpression.textcontent = displayValue;
+  }
+  else if (e.value == '+' || e.value == '*' || e.value == '/' || e.value == '-'){
+    if(displayValue.includes('+') || displayValue.includes('-') || displayValue.includes('*') || displayValue.includes('/')){
+      
+    } else {displayValue += ` ${e.value} `;}
+    outputExpression.textcontent = displayValue;
+  }
+  document.getElementById("expression").textContent = displayValue;
 }
 
-const updateResult = function(){
-    outputResult.textContent = `${result}`;
-}
+document.querySelectorAll('.digitB').forEach(el => el.addEventListener('click', () => {
+  updateDisplay(el);
+}));
 
-const add = function (firstNum, secondNum) {
-  result = firstNum + secondNum;
-};
+document.querySelectorAll('.operatorB').forEach(el => el.addEventListener('click', () => {
+  updateDisplay(el);
+}));
 
-const subtract = function (firstNum, secondNum) {
-  result = firstNum - secondNum;
-};
+document.querySelector('#evaluate').addEventListener('click', () => {
+  let splitExpression = displayValue.split(" ", 3)
+  console.log(splitExpression);
+  firstNum = Number(splitExpression[0]);
+  operator = splitExpression[1];
+  secondNum = Number(splitExpression[2]);
+  evaluate(firstNum, splitExpression[1], secondNum);
+  document.getElementById("result").textContent = result;
+});
 
-const multiply = function (firstNum, secondNum) {
-  result = firstNum * secondNum;
-};
 
-const divide = function (firstNum, secondNum) {
-  result = firstNum / secondNum;
-};
 
-const evaluate = function (firstNum, secondNum) {
-  if (operator == 'add') {
-    add(firstNum, secondNum);
-  } else if (operator == 'subtract') {
-    subtract(firstNum, secondNum);
-  } else if (operator == 'multiply') {
-    multiply(firstNum, secondNum);
-  } else if (operator == 'divide') {
-    divide(firstNum, secondNum);
+const evaluate = function (firstNum, operator, secondNum) {
+  if (operator == '+') {
+    result = firstNum + secondNum;
+  } else if (operator == '-') {
+    result = firstNum - secondNum;
+  } else if (operator == '*') {
+    result = firstNum * secondNum;
+  } else if (operator == '/') {
+    result = firstNum / secondNum;
   }
 };
