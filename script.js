@@ -78,9 +78,11 @@ const evaluate = function (firstNum, operator, secondNum) {
     result = firstNum * secondNum;
   } else if (operator == '/') {
     if (secondNum == 0) {
-      result = "Error";
+      result = `aM i A jOkE tO yOu?`;
       document.getElementById('result').textContent = result;
-      setTimeout(() => {clear()}, 3000); 
+      setTimeout(() => {
+        clear();
+      }, 3000);
     } else {
       result = firstNum / secondNum;
     }
